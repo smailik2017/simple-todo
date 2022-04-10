@@ -1,2 +1,7 @@
-<h1>Help#index</h1>
-<p>Find me in app/views/help/index.html.erb</p>
+<div class="info-page-header">
+  <h1>Как работать с программой
+</div>
+
+<div class="info-page-content">
+  <%= YAML.load_file('config/description.yml')['help'] %>
+</div>

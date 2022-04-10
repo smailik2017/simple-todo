@@ -23,6 +23,7 @@
 .tasks-container {
   display: flex;
   flex-wrap: wrap;
+  padding-right: 100px;
 }
 
 .task-content {
@@ -48,11 +49,6 @@
   border: 2px solid #333;
 }
 
-/* .task-menu{
-  display: none;
-  margin: 10px;
-} */
-
 .task:hover .task-menu {
   display: block;
 }
@@ -72,3 +68,12 @@ a {
   text-decoration: none;
 }
 
+.info-page-header {
+  display: flex;
+  padding-right: 100px;
+}
+
+.info-page-content {
+  display: flex;
+  padding-right: 100px;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SimpleTasks</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+
+    <div class="main-menu">
+      <div class="main-menu-item">
+        <a href="#">
+          <img class="main-menu-item-img" src="/assets/new-task.png">
+        </a>
+      </div>
+      <div class="main-menu-item">
+        <a href="about">
+          <img class="main-menu-item-img" src="/assets/about.png">
+        </a>
+      </div>
+      <div class="main-menu-item">
+        <a href="help">
+          <img class="main-menu-item-img" src="/assets/help.png">
+        </a>
+      </div>
+      <div class="main-menu-item">
+        <a href="settings">
+          <img class="main-menu-item-img" src="/assets/settings.png">
+        </a>
+      </div>
+    </div>
+
+    <%= yield %>
+  </body>
+</html>

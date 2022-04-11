@@ -1,0 +1,11 @@
+rails g model role name:string:uniq active:boolean description:string
+rails g model user name:string:uniq email:string:uniq active:boolean role:references
+rails g model state name:string:uniq
+rails g model task name:string:uniq description:string deadline:date user:references state:references
+rails g model item name:string deadline:date task:references state:references
+
+rails destroy role
+rails destroy user
+rails destroy state
+rails destroy task
+rails destroy item

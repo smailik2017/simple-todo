@@ -7,5 +7,5 @@ class Task < ApplicationRecord
   validates :name, uniqueness: true
   
   validates :description, presence: true
-  validates :description, length: { maximum: 16, minimum: 3 }
+  validates :description, length: { minimum: 3 }
 end

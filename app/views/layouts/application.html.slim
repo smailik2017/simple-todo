@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title
+      | SimpleTasks
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+  body
+    .main-menu
+        - if params['controller'] == 'tasks'
+          .main-menu-item
+            a[href="#"]
+              img.main-menu-item-img[data-title="Новая задача" src="/assets/new-task.png"]
+        - else
+          .main-menu-item
+            a[href="/"]
+              img.main-menu-item-img[src="/assets/tasks.png"]
+        - if params['controller'] != 'about'
+          .main-menu-item
+            a[href="about"]
+              img.main-menu-item-img[src="/assets/about.png"]
+        - if params['controller'] != 'help'
+          .main-menu-item
+            a[href="help"]
+              img.main-menu-item-img[src="/assets/help.png"]
+        - if params['controller'] != 'settings'
+          .main-menu-item
+            a[href="settings"]
+              img.main-menu-item-img[src="/assets/settings.png"]
+    = yield

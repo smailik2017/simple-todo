@@ -77,3 +77,13 @@ a {
   display: flex;
   padding-right: 100px;
 }
+
+.stat-tbl {
+  padding-right: 100px;
+}
+
+.stat-tbl-td {
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+

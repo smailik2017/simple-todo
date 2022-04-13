@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   belongs_to :role
+  has_many :tasks
+
   validates :name, presence: true
   validates :name, length: { maximium: 16, minimum: 2 }
   validates :name, uniqueness: true
@@ -10,6 +12,12 @@ class User < ApplicationRecord
   store :settings, coder: JSON
   store_accessor :settings, :per_page, :time_zone, :show_help
 
-  enum state: %i[created email_verified studied actived disabled]
+  enum state: {
+    created: 1,
+    email_verified: 2,
+    studied: 3,
+    actived: 4,
+    disabled: 5
+  } 
 
 end

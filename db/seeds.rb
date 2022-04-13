@@ -53,7 +53,8 @@ hash_users = USERS_COUNT.times.map do
     id: user_id,
     name: FFaker::Internet.user_name[0..16],
     email: FFaker::Internet.safe_email,
-    role_id: rand(9001..9002)
+    role_id: rand(9001..9002),
+    active: rand(0..1) == 0 ? false : true
   }
 end
 

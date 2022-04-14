@@ -12,5 +12,4 @@ namespace :tasks do
       puts "#{u.name} | #{tasks_cnt} | #{items_cnt}"
     end
   end
-
 end

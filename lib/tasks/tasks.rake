@@ -17,12 +17,13 @@ namespace :tasks do
     ## Items for user ##
     print 'Введите имя пользователя: '
     user_name = gets.chomp 
-
+    puts 'Вариант 1'
     ### Вариант 1 ###
     Item.where(task: Task.where(user: User.where(name: user_name))).each do |i|
       puts i.name
     end
 
+    puts 'Вариант 2'
     ### Вариант 2 ###
     sql = "
       select u.name as ""user_name"", t.name as ""task_name"", i.name as ""item_name"" 

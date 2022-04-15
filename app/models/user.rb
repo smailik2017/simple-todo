@@ -1,6 +1,16 @@
 class User < ApplicationRecord
-  belongs_to :role
+  belongs_to :role, counter_cache: true
   has_many :tasks
+
+  has_many :comments
+  has_many :commented_tasks, 
+            through:        :comments, 
+            source:         :commentable, 
+            source_type:    :Task
+  has_many  :commented_users,
+            through:        :comments,
+            source:         :commentable,
+            source_type:    :User
 
   validates :name, presence: true
   validates :name, length: { maximium: 16, minimum: 2 }

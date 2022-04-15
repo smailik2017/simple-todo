@@ -6,15 +6,18 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+Comment.delete_all
 Item.delete_all
 Task.delete_all    
 User.delete_all
 Role.delete_all
 State.delete_all
+Comment.delete_all
 
 USERS_COUNT = 10
 TASKS_COUNT = 20
 ITEMS_COUNT = 100
+COMMENTS_COUNT = 200
 
 ### Create States for Tasks and Items ###
 State.create do |s|
@@ -75,3 +78,15 @@ end
 
 Item.create! hash_items
 
+### Create Comments for Tasks ###
+hash_comments = COMMENTS_COUNT.times.map do
+  commentable = ((rand(2) == 1) ? Task.all : User.all).sample
+  {
+    content: FFaker::HipsterIpsum.paragraphs,
+    user: User.all.sample,
+    commentable_id: commentable.id,
+    commentable_type: commentable.class.to_s
+  }
+end
+
+Comment.create! hash_comments

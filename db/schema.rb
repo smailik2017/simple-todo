@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_12_145406) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_15_133150) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", comment: "Коммунтарии пользователя к делам", force: :cascade do |t|
+    t.text "content", comment: "Сщжержимое коментария"
+    t.bigint "user_id", comment: "Внешний ключ для связи с таблицей USERS"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -31,6 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_12_145406) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "users_count"
     t.index ["name"], name: "index_roles_on_name", unique: true
   end
 
@@ -38,6 +50,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_12_145406) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "tasks_count"
+    t.integer "items_count"
     t.index ["name"], name: "index_states_on_name", unique: true
   end
 
@@ -49,6 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_12_145406) do
     t.bigint "state_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "items_count"
     t.index ["name"], name: "index_tasks_on_name", unique: true
     t.index ["state_id"], name: "index_tasks_on_state_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
@@ -63,11 +78,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_12_145406) do
     t.datetime "updated_at", null: false
     t.jsonb "settings", default: {}, comment: "Индивидуальные параметры пользователя"
     t.integer "state", comment: "Статусная модель пользователя"
+    t.integer "tasks_count"
+    t.integer "comments_count"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "comments", "users"
   add_foreign_key "items", "states"
   add_foreign_key "items", "tasks"
   add_foreign_key "tasks", "states"

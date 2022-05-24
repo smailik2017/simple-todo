@@ -1,12 +1,13 @@
 .tasks-container
-  - 10.times do
+  - @tasks.each do |task|
     .task
       .task-content
-        |  Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque debitis laboriosam nobis! Eveniet, corrupti. Quo, quaerat expedita veniam quod voluptatem repellat nemo, voluptas dolorum non beatae, ducimus excepturi a laudantium. 
+        = task.name 
       .task-date
         b
-          | Дата: 
-        | ДД.ММ.ГГГГ 
+          = t('label.date') + ':'
+        = task.deadline
       .task-menu
-        = link_to image_tag('/assets/edit.png', class: 'task-menu-img'), '#', :title => 'Редактировать'
-        = link_to image_tag('/assets/done.png', class: 'task-menu-img'), '#', :title => 'Завершить'
+        = link_to image_tag('/assets/edit.png', class: 'task-menu-img'), '#', :title => t('label.edit')
+        = link_to image_tag('/assets/done.png', class: 'task-menu-img'), '#', :title => t('label.finish')
+  

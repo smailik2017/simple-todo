@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable, :trackable,
+         :recoverable, :rememberable, :validatable
   before_destroy  do
     Rails.logger.info "### Собираемся удалить пользователя #{name} ###"
   end
@@ -9,6 +13,7 @@ class User < ApplicationRecord
 
   before_validation :normalize_name, on: [ :create, :update ]
   before_validation :normalize_email, if: Proc.new { |u| u.email.present? } 
+  before_validation :set_default_role
 
   belongs_to :role, counter_cache: true
   
@@ -42,10 +47,23 @@ class User < ApplicationRecord
     disabled: 5
   } 
 
+  Role.find_each do |role|
+    define_method "#{role.code}?" do
+      role_id == role.id
+    end
+  end
+
   private
 
   def normalize_name
     self.name = name.downcase.titleize
   end
 
+  def normalize_email
+    self.email = email
+  end
+
+  def set_default_role
+    self.role_id = Role.where(code: 'default')[0].id if (self.role_id.nil? or Role.find(self.role_id).nil?)
+  end
 end

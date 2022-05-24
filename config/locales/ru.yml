@@ -1,0 +1,38 @@
+ ru:
+  label:
+    log_in: Вход
+    log_out: Выход
+    hello: Привет, 
+    registration: Регистрация
+    name: Имя
+    email: eMail
+    role: Роль
+    list_users: Список пользователей
+    edit: редактировать
+    finish: завершить
+    date: Дата
+    roles: Роли
+    help: Помощь
+    about_us: О нас
+    new_task: Новая задача
+    tasks: Задачи
+    help: Помощь
+    settings: Настройки
+  activerecord:
+    errors:
+      messages:
+        blank: обязательно для заполнения
+        too_short: слишком коротко
+      models:
+        user: Пользователи
+        post: Сообщения
+      attributes:
+        user:
+          password: Пароль
+          password_confirmation: Подтверждение
+          email: Email
+          name: Имя пользователя
+  table:
+    th: 
+      Name: Редактировать
+        

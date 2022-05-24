@@ -6,13 +6,15 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Comment.delete_all
-Item.delete_all
-Task.delete_all    
-User.delete_all
-Role.delete_all
-State.delete_all
-Comment.delete_all
+Item.destroy_all
+Task.destroy_all
+User.destroy_all
+Role.destroy_all
+Comment.destroy_all
+State.destroy_all
+
+default_role = Role.create!(name: 'Пользователь', code: :default, description: 'Пользователи')
+admin_role = Role.create!(name: 'Администратор', code: :admin, description: 'Администраторы')
 
 USERS_COUNT = 10
 TASKS_COUNT = 20
@@ -20,36 +22,23 @@ ITEMS_COUNT = 100
 COMMENTS_COUNT = 200
 
 ### Create States for Tasks and Items ###
-State.create do |s|
-  s.name = 'in progress'
-end
-
-State.create do |s|
-  s.name = 'finished'
-end
-
-State.create do |s|
-  s.name = 'canceled'
-end
-
-### Create Roles for Users ###
-Role.create do |r|
-  r.name = 'admin'
-  r.description = 'Administrator'
-end
-
-Role.create do |r|
-  r.name = 'user'
-  r.description = 'User'
-end
+State.create!(name: 'in progress')
+State.create!(name: 'finished')
+State.create!(name: 'canceled')
 
 ### Create Users ###
+admin_email = 'admin@example.com'
+user_pass = '111111'
+
 hash_users = USERS_COUNT.times.map do 
+  email = FFaker::Internet.safe_email
   {
     name: FFaker::Internet.user_name[0..16],
-    email: FFaker::Internet.safe_email,
-    role: Role.all.sample,
-    active: rand(0..1) == 0 ? false : true
+    email: email,
+    password: user_pass,
+    role: default_role,
+    # active: rand(0..1) == 0 ? false : true
+    active: true
   }
 end
 
@@ -90,3 +79,9 @@ hash_comments = COMMENTS_COUNT.times.map do
 end
 
 Comment.create! hash_comments
+
+User.create!  name: 'Администратор', 
+              email:  admin_email,
+              password: user_pass,
+              role: admin_role,
+              active: true

@@ -1,8 +1,20 @@
 class User < ApplicationRecord
-  belongs_to :role, counter_cache: true
-  has_many :tasks
+  before_destroy  do
+    Rails.logger.info "### Собираемся удалить пользователя #{name} ###"
+  end
 
-  has_many :comments
+  after_destroy do
+    Rails.logger.info "### Пользователь #{name} удален ###"
+  end
+
+  before_validation :normalize_name, on: [ :create, :update ]
+  before_validation :normalize_email, if: Proc.new { |u| u.email.present? } 
+
+  belongs_to :role, counter_cache: true
+  
+  has_many :tasks, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
   has_many :commented_tasks, 
             through:        :comments, 
             source:         :commentable, 
@@ -29,5 +41,11 @@ class User < ApplicationRecord
     actived: 4,
     disabled: 5
   } 
+
+  private
+
+  def normalize_name
+    self.name = name.downcase.titleize
+  end
 
 end

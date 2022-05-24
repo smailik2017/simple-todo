@@ -5,14 +5,14 @@ class TasksController < ApplicationController
   end
 
   def show
-    authorize @event
+    authorize @task
   end
 
   def update
-    authorize @event
+    authorize @task
   end
 
   def destroy
-    authorize @event
+    authorize @task
   end
 end

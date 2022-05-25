@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users
+    root 'users#index'
+  end
+
   devise_for :users do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
   
   resources :users, only: [:index, :edit, :update]
+  resources :tasks do
+    resources :items
+  end
 
   get 'users', to: 'users#index', as: 'users_index'
   get 'settings', to: 'settings#index', as: 'settings_index'

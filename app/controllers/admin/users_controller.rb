@@ -1,13 +1,14 @@
 class Admin::UsersController < Admin::ApplicationController
   before_action :set_admin_user, only: %i[ show edit update destroy ]
 
+  before_action :page_by_page, only: :index
+
   # after_action :verify_authorized, except: :index
   # after_action :verify_policy_scoped, only: :index
 
   # GET /admin/users or /admin/users.json
   def index
     authorize [:admin, User]
-    @admin_users = policy_scope(User, policy_scope_class: Admin::UserPolicy::Scope).all
   end
 
   # GET /admin/users/1 or /admin/users/1.json
@@ -73,4 +74,18 @@ class Admin::UsersController < Admin::ApplicationController
     def admin_user_params
       params.require(:user).permit(:name, :email)
     end
-end
+
+    def page_by_page
+      per_page = User.paginates_per 4
+      users = policy_scope(User, policy_scope_class: Admin::UserPolicy::Scope).all
+      
+      users_count = users.count
+      @total_pages = users_count / per_page + (users_count % per_page > 0 ? 1 : 0)
+      @current_page = params[:page].nil? ? 0 : params[:page]
+
+      redirect_to admin_users_path if @current_page.to_i > @total_pages.to_i || @current_page.to_i < 0
+
+      @admin_users = users.page(@current_page).includes(:role)
+    end
+
+  end

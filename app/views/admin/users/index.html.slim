@@ -10,10 +10,20 @@ table
   tbody
     - @admin_users.each do |admin_user|
       tr
-        td = admin_user.name 
+        td = admin_user.name  
         td = admin_user.email 
         td = admin_user.role.name 
         td = link_to 'Edit', edit_admin_user_path(admin_user)
         td = link_to 'Destroy', admin_user_path(admin_user), data: { confirm: 'Are you sure?' }, method: :delete
 br
+
+hr
+- (1..@total_pages).each do |v_page| 
+  - if v_page.to_i == @current_page.to_i
+    strong = v_page
+  - else 
+    = link_to v_page, admin_users_path + "?page=#{v_page}"
+  = "   "
+hr
+
 = link_to 'New User', new_admin_user_path

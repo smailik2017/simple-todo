@@ -28,6 +28,6 @@ html
             = link_to image_tag('/assets/settings.png', class: 'main-menu-item-img'), '/settings', :title => t('label.settings')
           .main-menu-item
             - if !current_user.nil?
-              = link_to image_tag('/assets/123.png', class: 'main-menu-item-img'), '/users', :title => t('label.roles') if current_user.admin?
+              = link_to image_tag('/assets/roles.png', class: 'main-menu-item-img'), '/users', :title => t('label.roles') if current_user.admin?
             
     = yield

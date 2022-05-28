@@ -3,3 +3,15 @@
     = t('label.about_us')
 .info-page-content
   = @content
+p  
+  = "Текущая дата #{current_date}"   
+p 
+  = highlight('Хелпер позволяет извлечь из строки подстроку и её окресности', ['строк', 'хелп'])
+p 
+  = truncate('Хелпер позволяет извлечь из строки подстроку и её окресности', length: 15, omission: '>>>')
+p 
+  = word_wrap('Хелпер позволяет извлечь из строки подстроку и её окресности', line_width: 10)
+p 
+  = list_tag(['first', 'second', 'third'])
+p 
+  = image_tag('/logo.png')

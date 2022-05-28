@@ -1,5 +1,5 @@
 h1 Listing admin_users
-table
+table cellspacing='0'
   thead
     tr
       th
@@ -8,8 +8,9 @@ table
       th 
       th 
   tbody
-    - @admin_users.each do |admin_user|
-      tr
+    - @admin_users.each_with_index do |admin_user, i|
+      / - background = "background-color: #{i.even? ? '#ddd' : '#fff'}"
+      tr style = "background-color:#{cycle('#ddd', '#fff')}" 
         td = admin_user.name  
         td = admin_user.email 
         td = admin_user.role.name 

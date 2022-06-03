@@ -1,3 +1,4 @@
+h1= action_title(Task, action_name)
 .tasks-container
   - @tasks.each do |task|
     .task
@@ -8,6 +9,14 @@
           = t('label.date') + ':'
         = task.deadline
       .task-menu
-        = link_to image_tag('/assets/edit.png', class: 'task-menu-img'), '#', :title => t('label.edit')
+        = link_to image_tag('/assets/edit.png', class: 'task-menu-img'), edit_task_path(task), :title => t('label.edit')
         = link_to image_tag('/assets/done.png', class: 'task-menu-img'), '#', :title => t('label.finish')
-  
+
+hr
+- (1..@total_pages).each do |v_page| 
+  - if v_page.to_i == @current_page.to_i
+    strong = v_page
+  - else 
+    = link_to v_page, tasks_path + "?page=#{v_page}"
+  = "   "
+hr

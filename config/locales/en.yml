@@ -30,4 +30,59 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  label:
+    log_in: Log in
+    log_out: Log out
+    hello: Hello,  
+    registration: Registration
+    name: Name
+    email: eMail
+    role: Role
+    list_users: Users list
+    edit: Edit
+    finish: Finish
+    date: Date
+    roles: Roles
+    help: Help
+    about_us: About
+    new_task: New task
+    tasks: Tasks
+    help: Help
+    settings: Settings
+    index:  List
+    new:  New
+    edit: Edit
+  about: About
+  current_date: Current date
+  visits: Visits
+  main_page: Main page
+  date:
+    formats:
+      default: '%m/%d/%Y'
+      database: '%Y-%m-%d'
+  activerecord:
+    models:
+      user:
+        zero: user
+        one: user
+        few: user
+        many: users
+        other: users
+        accusative: user
+        nominative: user
+        dative: user
+      task:
+        zero: task
+        one: task
+        few: task
+        many: task
+        other: task
+        accusative: task
+        nominative: task
+        dative: task
+      visit:
+        zero: visit
+        one: visit
+        few: visit
+        many: visits
+        other: visits

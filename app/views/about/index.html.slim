@@ -1,17 +1,14 @@
 .info-page-header
-  h1
-    = t('label.about_us')
+  h1= t :about
 .info-page-content
-  = @content
-p  
-  = "Текущая дата #{current_date}"   
-p 
-  = highlight('Хелпер позволяет извлечь из строки подстроку и её окресности', ['строк', 'хелп'])
-p 
-  = truncate('Хелпер позволяет извлечь из строки подстроку и её окресности', length: 15, omission: '>>>')
-p 
-  = word_wrap('Хелпер позволяет извлечь из строки подстроку и её окресности', line_width: 10)
-p 
-  = list_tag(['first', 'second', 'third'])
-p 
-  = image_tag('/logo.png')
+    = t :current_date 
+    =< l Date.current, format: :database
+    br
+    = session[:about_counter]
+    =< t('activerecord.models.visit', count: session[:about_counter])
+    br
+    = User.count 
+    =< t('activerecord.models.user', count: User.count) 
+hr
+=> link_to t(:main_page), root_path 
+=< button_to language_link_name, toggle_path

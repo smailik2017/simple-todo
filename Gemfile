@@ -69,3 +69,5 @@ gem 'devise-i18n'
 gem 'pundit'
 
 gem 'kaminari'
+
+gem 'rails-i18n'

@@ -18,14 +18,40 @@
     tasks: Задачи
     help: Помощь
     settings: Настройки
+    index:  Список
+    new:  Создание
+    edit: Редактирование
   activerecord:
     errors:
       messages:
         blank: обязательно для заполнения
         too_short: слишком коротко
-      models:
-        user: Пользователи
-        post: Сообщения
+    models:
+      user:
+        zero: пользователей
+        one: пользователь
+        few: пользователя
+        many: пользователей
+        other: пользователи
+        accusative: пользователя
+        nominative: пользователь
+        dative: пользователю
+      task:
+        zero: задач
+        one: задача
+        few: задачи
+        many: задач
+        other: задачи
+        accusative: задачи
+        nominative: задача
+        dative: задаче
+      visit:
+        zero: посещений
+        one: посещение
+        few: посещения
+        many: посещений
+        other: посещения
+      post: Сообщения
       attributes:
         user:
           password: Пароль
@@ -35,4 +61,11 @@
   table:
     th: 
       Name: Редактировать
-        
+  about: О нас
+  current_date: Текущая дата
+  visits: Посещений
+  main_page: Главная страница
+  date:
+    formats:
+      default: '%d.%m.%Y'
+      database: '%Y-%m-%d'

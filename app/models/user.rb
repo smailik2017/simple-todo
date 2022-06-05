@@ -54,6 +54,10 @@ class User < ApplicationRecord
     end
   end
 
+  def active_for_authentication?
+    super && active?
+  end
+
   private
 
   def normalize_name

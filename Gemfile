@@ -71,3 +71,7 @@ gem 'pundit'
 gem 'kaminari'
 
 gem 'rails-i18n'
+
+gem 'sass-rails', '>= 6'
+
+gem 'jquery-rails'

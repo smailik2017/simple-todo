@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   post 'toggle', to: 'locales#toggle'
 
   namespace :admin do
-    resources :users
+    resources :users do 
+      member do
+        post :toggle, action: :toggle
+      end
+    end
     root 'users#index'
   end
 

@@ -14,4 +14,5 @@ class Task < ApplicationRecord
   validates :description, presence: true
   validates :description, length: { minimum: 3 }
 
+  self.per_page = 4
 end

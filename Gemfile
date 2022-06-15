@@ -83,3 +83,5 @@ gem 'turbolinks'
 gem 'rails-ujs'
 
 gem 'font-awesome-rails'
+
+gem 'will_paginate-bootstrap'

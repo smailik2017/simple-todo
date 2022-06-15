@@ -1,11 +1,18 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task, only: %i[ show edit update destroy ]
-  before_action :page_by_page, only: :index
-
 
   # GET /tasks or /tasks.json
   def index
+    per_page = Task.per_page
+    scope = policy_scope(Task)
+    scope_count = scope.count
+    total_pages = scope_count / per_page + (scope_count % per_page > 0 ? 1 : 0)
+    page = params[:page] ||= 1
+    page = 1 if page.to_i < 1
+    page = total_pages if page.to_i > total_pages
+
+    @tasks = scope.paginate(:page => page, :per_page => per_page)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -69,20 +76,6 @@ class TasksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def task_params
       params.require(:task).permit(:name, :description, :deadline, :state_id, :user_id)
-    end
-
-    def page_by_page
-      per_page = Task.paginates_per 5
-      tasks = policy_scope(Task)
-
-      tasks_count = tasks.count
-      @total_pages = tasks_count / per_page + (tasks_count % per_page > 0 ? 1 : 0)
-      @current_page = params[:page].nil? ? 0 : params[:page]
-
-      redirect_to tasks_path if @current_page.to_i > @total_pages.to_i || @current_page.to_i < 0
-
-      @tasks = tasks.page(@current_page)
-
     end
 
 end

@@ -9,6 +9,6 @@ module Admin::ApplicationHelper
   end
 
   def activate_title(user)
-    user.active? ? 'Disactivate' : 'Activate'
+    sanitize user.active? ? '<span class="fa fa-check-circle"></span>' : '<span class="fa fa-circle"></span>'
   end
 end

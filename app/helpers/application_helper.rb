@@ -23,5 +23,8 @@ module ApplicationHelper
       t("activerecord.models.#{klass.name.tableize.singularize}.#{action_case}")
     ].join(' ')
   end
+
+  WillPaginate::ViewHelpers.pagination_options[:previous_label] = '<span class="fa fa-arrow-left"></span>' 
+  WillPaginate::ViewHelpers.pagination_options[:next_label] = '<span class="fa fa-arrow-right"></span>' 
   
 end

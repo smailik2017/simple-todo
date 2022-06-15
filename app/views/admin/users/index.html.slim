@@ -10,26 +10,11 @@ table cellspacing='0'
       th  
   tbody
     = render partial: 'admin_user', collection: @admin_users
-    / - @admin_users.each_with_index do |admin_user, i|
-    /   / - background = "background-color: #{i.even? ? '#ddd' : '#fff'}"
-    /   tr style = "background-color:#{cycle('#ddd', '#fff')}" 
-    /     td = admin_user.name  
-    /     td = admin_user.email 
-    /     td = admin_user.role.name 
-    /     td = link_to 'Edit', edit_admin_user_path(admin_user)
-    /     td = button_to 'Destroy', admin_user_path(admin_user), data: { confirm: 'Are you sure?' }, method: :delete, remote: true
-    /     td = button_to activate_title(admin_user), toggle_admin_user_path(admin_user), remote: true
-br
-
 p 
-  = paginate @admin_users
-/ hr
-/ - (1..@total_pages).each do |v_page| 
-/   - if v_page.to_i == @current_page.to_i
-/     strong = v_page
-/   - else 
-/     = link_to v_page, admin_users_path + "?page=#{v_page}"
-/   = "   "
-/ hr
-
-= link_to 'New User', new_admin_user_path
+p 
+  = link_to new_admin_user_path, class: 'btn btn-secondary' do 
+    span.fa.fa-plus 
+p 
+.row.justify-content-center
+  .col-1
+    = will_paginate @admin_users, renderer: BootstrapPagination::Rails

@@ -18,6 +18,8 @@ br
 p 
   = link_to new_task_path, class: 'btn btn-secondary' do 
     span.fa.fa-plus  
-p 
-  = paginate @tasks
+
+.row.justify-content-center
+  .col-1
+    = will_paginate @tasks, renderer: BootstrapPagination::Rails
 

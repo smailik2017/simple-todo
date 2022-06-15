@@ -21,13 +21,15 @@ table cellspacing='0'
     /     td = button_to activate_title(admin_user), toggle_admin_user_path(admin_user), remote: true
 br
 
-hr
-- (1..@total_pages).each do |v_page| 
-  - if v_page.to_i == @current_page.to_i
-    strong = v_page
-  - else 
-    = link_to v_page, admin_users_path + "?page=#{v_page}"
-  = "   "
-hr
+p 
+  = paginate @admin_users
+/ hr
+/ - (1..@total_pages).each do |v_page| 
+/   - if v_page.to_i == @current_page.to_i
+/     strong = v_page
+/   - else 
+/     = link_to v_page, admin_users_path + "?page=#{v_page}"
+/   = "   "
+/ hr
 
 = link_to 'New User', new_admin_user_path

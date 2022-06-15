@@ -74,4 +74,12 @@ gem 'rails-i18n'
 
 gem 'sass-rails', '>= 6'
 
+gem 'bootstrap'
+
+gem 'jquery'
 gem 'jquery-rails'
+gem 'turbolinks'
+
+gem 'rails-ujs'
+
+gem 'font-awesome-rails'

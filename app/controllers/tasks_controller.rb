@@ -6,7 +6,6 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    # @tasks = policy_scope(Task)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -24,7 +23,8 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
+    # @task = Task.new(task_params)
+    @task = current_user.tasks.create(task_params)
 
     respond_to do |format|
       if @task.save
@@ -63,19 +63,16 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      # @task = Task.find(params[:id])
       @task = policy_scope(Task).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def task_params
-      # params.fetch(:task, {})
-      params.require(:task).permit(:name, :description, :deadline)
+      params.require(:task).permit(:name, :description, :deadline, :state_id, :user_id)
     end
 
     def page_by_page
       per_page = Task.paginates_per 5
-      # tasks = policy_scope(Task, policy_scope_class: TaskPolicy::Scope).all
       tasks = policy_scope(Task)
 
       tasks_count = tasks.count

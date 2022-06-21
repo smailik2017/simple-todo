@@ -59,6 +59,14 @@ class User < ApplicationRecord
     super && active?
   end
 
+  def description
+    "#{name} #{email}"
+  end
+
+  # def attributes
+  #   super.filter{ |k, _v| %w[name email].include? k }.merge(description: description)
+  # end
+
   private
 
   def normalize_name

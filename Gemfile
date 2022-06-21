@@ -68,7 +68,7 @@ gem 'devise-i18n'
 
 gem 'pundit'
 
-gem 'kaminari'
+# gem 'kaminari'
 
 gem 'rails-i18n'
 
@@ -85,3 +85,9 @@ gem 'rails-ujs'
 gem 'font-awesome-rails'
 
 gem 'will_paginate-bootstrap'
+
+gem 'grape'
+
+gem 'grape-entity'
+
+# gem 'grape_devise'

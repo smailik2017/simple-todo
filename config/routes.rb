@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :tasks
+  mount RootApi => '/'
+
   post 'toggle', to: 'locales#toggle'
 
   namespace :admin do
@@ -25,10 +26,6 @@ Rails.application.routes.draw do
   get 'help', to: 'help#index', as: 'help_index'
   get 'about', to: 'about#index', as: 'about_index'
   get 'stats', to: 'stats#index', as: 'stats_index'
-
-  # scope '/:locale' do
-  #   get 'about', to: 'about#index'
-  # end
 
   root 'tasks#index'
 end

@@ -39,6 +39,9 @@ module SimpleTasks
     config.i18n.available_locales = [:en, :ru]
     config.i18n.default_locale = :ru
     config.time_zone = 'Moscow'
-    
+
+    config.paths.add Rails.root.join('app', 'api', 'helpers').to_s, eager_load: true
+    config.paths.add Rails.root.join('app', 'api', 'entity').to_s, eager_load: true
+      
   end
 end

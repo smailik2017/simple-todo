@@ -1,4 +1,6 @@
-RootApi::prefix :users_api
+# frozen_string_literal: true
+
+RootApi.prefix :users_api
 
 class Users < Grape::API
   helpers ParamsHelper, FiltersHelper
@@ -18,7 +20,7 @@ class Users < Grape::API
     params do
       use :filters
     end
-    
+
     get '/' do
       present @user, with: Entities::User
     end

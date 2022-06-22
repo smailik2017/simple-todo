@@ -1,11 +1,49 @@
+# frozen_string_literal: true
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :bigint           not null, primary key
+#  active                 :boolean
+#  comments_count         :integer
+#  current_sign_in_at     :datetime
+#  current_sign_in_ip     :string
+#  email                  :string
+#  encrypted_password     :string           default(""), not null
+#  last_sign_in_at        :datetime
+#  last_sign_in_ip        :string
+#  name                   :string
+#  remember_created_at    :datetime
+#  reset_password_sent_at :datetime
+#  reset_password_token   :string
+#  settings               :jsonb
+#  sign_in_count          :integer          default(0), not null
+#  state                  :integer
+#  tasks_count            :integer
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  role_id                :bigint           not null
+#
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_name                  (name) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_role_id               (role_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (role_id => roles.id)
+#
 class User < ApplicationRecord
   self.per_page = 3
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  
+
   devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable
-  before_destroy  do
+  before_destroy do
     Rails.logger.info "### Собираемся удалить пользователя #{name} ###"
   end
 
@@ -13,23 +51,23 @@ class User < ApplicationRecord
     Rails.logger.info "### Пользователь #{name} удален ###"
   end
 
-  before_validation :normalize_name, on: [ :create, :update ]
-  before_validation :normalize_email, if: Proc.new { |u| u.email.present? } 
+  before_validation :normalize_name, on: %i[create update]
+  before_validation :normalize_email, if: proc { |u| u.email.present? }
   before_validation :set_default_role
 
   belongs_to :role, counter_cache: true
-  
+
   has_many :tasks, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  has_many :commented_tasks, 
-            through:        :comments, 
-            source:         :commentable, 
-            source_type:    :Task
+  has_many :commented_tasks,
+           through: :comments,
+           source: :commentable,
+           source_type: :Task
   has_many  :commented_users,
-            through:        :comments,
-            source:         :commentable,
-            source_type:    :User
+            through: :comments,
+            source: :commentable,
+            source_type: :User
 
   validates :name, presence: true
   validates :name, length: { maximium: 16, minimum: 2 }
@@ -47,7 +85,7 @@ class User < ApplicationRecord
     studied: 3,
     actived: 4,
     disabled: 5
-  } 
+  }
 
   Role.find_each do |role|
     define_method "#{role.code}?" do
@@ -78,6 +116,6 @@ class User < ApplicationRecord
   end
 
   def set_default_role
-    self.role_id = Role.where(code: 'default')[0].id if (self.role_id.nil? or Role.find(self.role_id).nil?)
+    self.role_id = Role.where(code: 'default')[0].id if role_id.nil? || Role.find(role_id).nil?
   end
 end

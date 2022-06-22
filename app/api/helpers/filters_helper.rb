@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FiltersHelper
   extend Grape::API::Helpers
 
@@ -16,5 +18,4 @@ module FiltersHelper
   def role_scope
     Role.all
   end
-
 end

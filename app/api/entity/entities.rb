@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 module Entities
   class Task < Grape::Entity
     include ActionView::Helpers::TextHelper
-    root  'tasks', 'task'
+    root 'tasks', 'task'
 
     expose  :id,
             :name,
             :description,
             :done,
             :deadline
-  
+
     expose  :user, using: 'Entities::User' do |task, _|
       task.user
     end
@@ -24,12 +26,12 @@ module Entities
 
   class User < Grape::Entity
     include ActionView::Helpers::TextHelper
-    root  'users', 'user'
+    root 'users', 'user'
 
     expose  :id,
             :name,
             :email
-  
+
     expose :role, using: 'Entities::Role' do |user, _|
       user.role
     end
@@ -37,11 +39,10 @@ module Entities
 
   class Role < Grape::Entity
     include ActionView::Helpers::TextHelper
-    root  'roles', 'role'
+    root 'roles', 'role'
 
     expose  :id,
             :name,
             :code
-  
   end
 end

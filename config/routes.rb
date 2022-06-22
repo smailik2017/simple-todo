@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   mount RootApi => '/'
 
   post 'toggle', to: 'locales#toggle'
 
   namespace :admin do
-    resources :users do 
+    resources :users do
       member do
         post :toggle, action: :toggle
       end
@@ -15,8 +17,8 @@ Rails.application.routes.draw do
   devise_for :users do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
-  
-  resources :users, only: [:index, :edit, :update]
+
+  resources :users, only: %i[index edit update]
   resources :tasks do
     resources :items
   end

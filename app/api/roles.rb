@@ -1,4 +1,6 @@
-RootApi::prefix :roles_api
+# frozen_string_literal: true
+
+RootApi.prefix :roles_api
 
 class Roles < Grape::API
   helpers ParamsHelper, FiltersHelper
@@ -18,7 +20,7 @@ class Roles < Grape::API
     params do
       use :filters
     end
-    
+
     get '/' do
       present @role, with: Entities::Role
     end

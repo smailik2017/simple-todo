@@ -1,23 +1,24 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[show edit update destroy]
 
   # GET /tasks or /tasks.json
   def index
     per_page = Task.per_page
     scope = policy_scope(Task)
     scope_count = scope.count
-    total_pages = scope_count / per_page + (scope_count % per_page > 0 ? 1 : 0)
+    total_pages = scope_count / per_page + ((scope_count % per_page).positive? ? 1 : 0)
     page = params[:page] ||= 1
     page = 1 if page.to_i < 1
     page = total_pages if page.to_i > total_pages
 
-    @tasks = scope.paginate(:page => page, :per_page => per_page)
+    @tasks = scope.paginate(page: page, per_page: per_page)
   end
 
   # GET /tasks/1 or /tasks/1.json
-  def show
-  end
+  def show; end
 
   # GET /tasks/new
   def new
@@ -25,8 +26,7 @@ class TasksController < ApplicationController
   end
 
   # GET /tasks/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /tasks or /tasks.json
   def create
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to task_url(@task), notice: "Task was successfully created." }
+        format.html { redirect_to task_url(@task), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -48,7 +48,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to task_url(@task), notice: "Task was successfully updated." }
+        format.html { redirect_to task_url(@task), notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -62,20 +62,20 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: "Task was successfully destroyed." }
+      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = policy_scope(Task).find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def task_params
-      params.require(:task).permit(:name, :description, :deadline, :state_id, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = policy_scope(Task).find(params[:id])
+  end
 
+  # Only allow a list of trusted parameters through.
+  def task_params
+    params.require(:task).permit(:name, :description, :deadline, :state_id, :user_id)
+  end
 end

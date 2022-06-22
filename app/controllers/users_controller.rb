@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     redirect_to root_path if current_user.default?
     @users = User.all.sort
@@ -19,5 +21,4 @@ class UsersController < ApplicationController
     @user.update(params.require(:user).permit(:role_id))
     redirect_to users_path
   end
-
 end

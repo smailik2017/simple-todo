@@ -1,0 +1,16 @@
+AllCops:
+  Exclude:
+    - 'tmp/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+
+Layout/LineLength:
+  Max:  100
+
+Style/Documentation:
+  Enabled: false
+
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec

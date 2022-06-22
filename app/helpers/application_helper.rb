@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def current_date
     Date.current.to_s
   end
 
   def list_tag(values)
-    result = "<ul>"
+    result = '<ul>'
     values.each do |value|
       result << "<li>#{value}</li>"
     end
-    sanitize result << "</ul>"
+    sanitize result << '</ul>'
   end
 
   def language_link_name
@@ -24,7 +26,8 @@ module ApplicationHelper
     ].join(' ')
   end
 
-  WillPaginate::ViewHelpers.pagination_options[:previous_label] = '<span class="fa fa-arrow-left"></span>' 
-  WillPaginate::ViewHelpers.pagination_options[:next_label] = '<span class="fa fa-arrow-right"></span>' 
-  
+  WillPaginate::ViewHelpers.pagination_options[:previous_label] =
+    '<span class="fa fa-arrow-left"></span>'
+  WillPaginate::ViewHelpers.pagination_options[:next_label] =
+    '<span class="fa fa-arrow-right"></span>'
 end

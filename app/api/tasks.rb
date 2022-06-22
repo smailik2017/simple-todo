@@ -1,4 +1,6 @@
-RootApi::prefix :tasks_api
+# frozen_string_literal: true
+
+RootApi.prefix :tasks_api
 
 class Tasks < Grape::API
   helpers ParamsHelper, FiltersHelper
@@ -18,7 +20,7 @@ class Tasks < Grape::API
     params do
       use :filters
     end
-    
+
     get '/' do
       present @task, with: Entities::Task
     end

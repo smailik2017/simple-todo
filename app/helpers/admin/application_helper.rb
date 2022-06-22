@@ -1,14 +1,18 @@
-module Admin::ApplicationHelper
-  def action_title(klass, action_name)
-    action_case = action_name == 'index' ? 'many' : 'accusative'
+# frozen_string_literal: true
 
-    [
-      t("label.#{action_name}"),
-      t("activerecord.models.#{klass.name.tableize.singularize}.#{action_case}")
-    ].join(' ')
-  end
+module Admin
+  module ApplicationHelper
+    def action_title(klass, action_name)
+      action_case = action_name == 'index' ? 'many' : 'accusative'
 
-  def activate_title(user)
-    sanitize user.active? ? '<span class="fa fa-check-circle"></span>' : '<span class="fa fa-circle"></span>'
+      [
+        t("label.#{action_name}"),
+        t("activerecord.models.#{klass.name.tableize.singularize}.#{action_case}")
+      ].join(' ')
+    end
+
+    def activate_title(user)
+      sanitize user.active? ? '<span class="fa fa-check-circle"></span>' : '<span class="fa fa-circle"></span>'
+    end
   end
 end

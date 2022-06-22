@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: email_address_with_name('no-reply@example.com', 'TODO-сайт')
+  # default from: email_address_with_name('maks.v.fedorovskiy@yandex.ru', 'TODO-сайт')
   layout 'mailer'
 end
 

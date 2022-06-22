@@ -75,4 +75,16 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.debug_exception_response_format = :default
 
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.delivery_method = :smtp
+
+  # config.action_mailer.smtp_settings = {
+  #   ssl: true,
+  #   address: 'smtp.yandex.ru',
+  #   port: 465,
+  #   authentication: 'login',
+  #   user_name: 'maks.v.fedorovskiy@yandex.ru',
+  #   password: 'der parol'
+  # }
+
 end

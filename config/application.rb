@@ -46,5 +46,6 @@ module SimpleTasks
 
     config.paths.add Rails.root.join('app/api/helpers').to_s, eager_load: true
     config.paths.add Rails.root.join('app/api/entity').to_s, eager_load: true
+    config.paths.add Rails.root.join('lib').to_s, eager_load: true
   end
 end

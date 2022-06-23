@@ -42,5 +42,8 @@ class Task < ApplicationRecord
   validates :description, presence: true
   validates :description, length: { minimum: 3 }
 
+  scope :in_progress, -> { where(state_id: State.find_by(name: 'in progress').id) }
+
+
   self.per_page = 4
 end

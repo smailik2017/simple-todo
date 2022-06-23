@@ -101,3 +101,5 @@ gem 'dotenv-rails'
 
 gem 'rack-mini-profiler'
 
+gem 'whenever', require: false
+

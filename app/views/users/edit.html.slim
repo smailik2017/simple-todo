@@ -1,0 +1,23 @@
+.info-page-header
+  h1
+    | Список пользователей 
+.info-page-content
+  = form_with model: @user, methor: :patch do |f|
+    table border="1"
+      tr 
+        th 
+          | Name 
+        th 
+          | Email 
+        th 
+          | Role
+        tr
+          td 
+            = @user.name 
+          td 
+            = @user.email
+          td 
+            = f.collection_select :role_id, Role.all, :id, :name, include_blank: false
+    br
+    .actions
+      = f.submit "Update"

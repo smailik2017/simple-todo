@@ -1,0 +1,8 @@
+/ p 
+/   = image_tag attachments['notify_mailer.rb'].url
+  
+p Подходит крайний срок выполнения следующих дел:
+- @tasks.each do |task|
+    p 
+      = link_to truncate(task.name), task_url(task)
+

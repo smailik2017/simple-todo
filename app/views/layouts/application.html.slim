@@ -2,27 +2,36 @@ doctype html
 html
   head
     title
-      | SimpleTasks
+      = Settings.name
     meta[name="viewport" content="width=device-width,initial-scale=1"]
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   body
-    .main-menu
-        - if params['controller'] == 'tasks'
-          .main-menu-item
-            = link_to image_tag('/assets/new-task.png', class: 'main-menu-item-img'), '#', :title => 'Новая задача'
-        - else
-          .main-menu-item
-            = link_to image_tag('/assets/tasks.png', class: 'main-menu-item-img'), '/', :title => 'Задачи'
-        - if params['controller'] != 'about'
-          .main-menu-item
-            = link_to image_tag('/assets/about.png', class: 'main-menu-item-img'), 'about', :title => 'О нас'
-        - if params['controller'] != 'help'
-          .main-menu-item
-            = link_to image_tag('/assets/help.png', class: 'main-menu-item-img'), 'help', :title => 'Помощь'
-        - if params['controller'] != 'settings'
-          .main-menu-item
-            = link_to image_tag('/assets/settings.png', class: 'main-menu-item-img'), 'settings', :title => 'Настройки'
-    = yield
+    .container
+      .row
+        =render 'shared/header'
+        / .main-menu
+        /     - if params['controller'] == 'tasks'
+        /       .main-menu-item
+        /         = link_to image_tag('/assets/new-task.png', class: 'main-menu-item-img'), new_task_path, :title => t('label.new_task')
+        /     - else
+        /       .main-menu-item
+        /         = link_to image_tag('/assets/tasks.png', class: 'main-menu-item-img'), '/', :title => t('label.tasks')
+        /     - if params['controller'] != 'about'
+        /       .main-menu-item
+        /         = link_to image_tag('/assets/about.png', class: 'main-menu-item-img'), '/about', :title => t('label.about_us')
+        /     - if params['controller'] != 'help'
+        /       .main-menu-item
+        /         = link_to image_tag('/assets/help.png', class: 'main-menu-item-img'), '/help', :title => t('label.help')
+        /     - if params['controller'] != 'settings'
+        /       .main-menu-item
+        /         = link_to image_tag('/assets/settings.png', class: 'main-menu-item-img'), '/settings', :title => t('label.settings')
+        /       .main-menu-item
+        /         - if !current_user.nil?
+        /           = link_to image_tag('/assets/roles.png', class: 'main-menu-item-img'), '/users', :title => t('label.roles') if current_user.admin?
+        /       .main-menu-item 
+        /         = button_to language_link_name, toggle_path
+                
+        = yield

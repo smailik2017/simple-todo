@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 namespace :fill_test_data do
-  desc "TODO"
-  task execute: :environment do
-# Deleating all tables #
-    Task.delete_all    
+  desc 'TODO'
+  task execute: :environment do # rubocop:disable Metrics/BlockLength
+    # Deleating all tables #
+    Task.delete_all
     User.delete_all
     Role.delete_all
     State.delete_all
@@ -22,7 +24,7 @@ namespace :fill_test_data do
       r.description = 'User'
     end
 
-# States create #
+    # States create #
     puts 'Creating STATES'
 
     State.create do |s|
@@ -40,9 +42,9 @@ namespace :fill_test_data do
       s.name = 'canceled'
     end
 
-# User create #
+    # User create #
     puts 'Creating USERS'
-    
+
     User.create do |u|
       u.id = 9001
       u.name = 'user1'
@@ -82,38 +84,35 @@ namespace :fill_test_data do
       u.role_id = 9002
       u.active = true
     end
-# Creating TASKS
+    # Creating TASKS
     puts 'creating TASKS'
     task_id = 9001
     (9001..9005).each do |u|
-      (1..3).each do |t_ind|
+      (1..3).each do |_t_ind|
         Task.create do |t|
           t.id = task_id
           task_id += 1
           t.name = "Task user #{u}"
-          t.description = "Task User"
+          t.description = 'Task User'
           t.user_id = u
-          t.state_id = rand(9001..9003) 
+          t.state_id = rand(9001..9003)
         end
       end
     end
 
-# Creating ITEMS
+    # Creating ITEMS
     puts 'creating ITEMS'
     item_id = 9001
     (9001..9015).each do |t|
-      (1..3).each do |i_ind|
+      (1..3).each do |_i_ind|
         Item.create do |i|
           i.id = item_id
           item_id += 1
           i.name = "Item task #{t}"
           i.task_id = t
-          i.state_id = rand(9001..9003) 
+          i.state_id = rand(9001..9003)
         end
       end
     end
-
-
   end
-
 end

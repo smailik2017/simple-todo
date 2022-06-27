@@ -1,0 +1,48 @@
+= form_for @task do |f|
+  - if task.errors.any?
+    h2 = "#{pluralize(task.errors.count, 'error')} prohobited this task from being saved:"
+    ul 
+      - task.errors.full_messages.each do |message|
+        li = message 
+  .field 
+    = f.label :name, class: 'form-label'
+    = f.text_field :name, class: 'form-control'
+
+  .field 
+    = f.label :description, class: 'form-label'
+    = f.text_area :description, class: 'form-control'
+
+  .field 
+    = f.label :deadline, class: 'form-label'
+    = f.datetime_field :deadline, class: 'form-control'
+
+  .field 
+    = f.label :state_id, class: 'form-label'
+    = f.select :state_id, options_for_select(State.all.collect { |s| [s.name, s.id]}.insert(0, ""), @task.state_id)
+
+  .actions 
+    = f.submit :send, class: 'btn btn-secondary'
+
+
+end 
+/ = form_with(model: @task) do |form|
+/   - if @task.errors.any?
+/     div style="color: red"
+/       h2 = "#{pluralize(@task.errors.count, 'error')} prohibited this task from being saved:"
+/       ul
+/         - @task.errors.each do |error|
+/           li = error.full_message
+
+/   .field
+/     = form.label :name
+/     = form.text_field :name
+
+/   .field 
+/     = form.label :description
+/     = form.text_area :description
+
+/   .field
+/     = form.label :deadline
+/     = form.date_field :deadline
+/   div 
+/     = form.submit

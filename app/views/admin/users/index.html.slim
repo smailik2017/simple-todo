@@ -1,0 +1,20 @@
+h1= action_title(User, action_name)
+table cellspacing='0'
+  thead
+    tr
+      th
+      th
+      th
+      th 
+      th
+      th  
+  tbody
+    = render partial: 'admin_user', collection: @admin_users
+p 
+p 
+  = link_to new_admin_user_path, class: 'btn btn-secondary' do 
+    span.fa.fa-plus 
+p 
+.row.justify-content-center
+  .col-1
+    = will_paginate @admin_users, renderer: BootstrapPagination::Rails

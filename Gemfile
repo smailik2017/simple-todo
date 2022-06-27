@@ -103,3 +103,9 @@ gem 'rack-mini-profiler'
 
 gem 'whenever', require: false
 
+gem 'redis'
+
+gem 'resque'
+
+gem 'resque-scheduler'
+

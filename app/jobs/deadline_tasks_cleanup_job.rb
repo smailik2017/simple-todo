@@ -1,8 +1,8 @@
-class DeadlineTasksCleanupJob < ApplicationJob
-  queue_as :default
+class DeadlineTasksCleanupJob
+  @queue = :default
 
-  def perform(ago = 1.week.ago)
+  def self.perform(ago = 1.week.ago)
     Task.where('deadline < ?', ago).update(done: true)
-    # FileUtils.touch Rails.root.join('tmp/hello_from_whenever.txt')
+    puts "Task (Cleanup Deadline) completed successfuly"
   end
 end

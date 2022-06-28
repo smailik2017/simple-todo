@@ -1,0 +1,11 @@
+every_day_job_deadline_cleanup:
+  cron: "0 1 * * *"
+  class: DeadlineTasksCleanupJob
+  args:
+  description: "Every day cleanup deadline job"
+
+every_day_job_notify_deadline:
+  cron: "59 23 * * *"
+  class: NotifyDeadlineJob
+  args:
+  description: "Every day notify"

@@ -106,7 +106,3 @@ gem 'whenever', require: false
 gem 'redis'
 
 gem 'resque'
-
-# добавлен для обработки DeadlineEventsCleanupJob.set(wait_until: Date.tomorrow.noon).perform_later(1.week.ago)
-gem 'resque-scheduler'
-

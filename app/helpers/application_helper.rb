@@ -30,4 +30,9 @@ module ApplicationHelper
     '<span class="fa fa-arrow-left"></span>'
   WillPaginate::ViewHelpers.pagination_options[:next_label] =
     '<span class="fa fa-arrow-right"></span>'
+
+  def current_user_avatar?
+    user_signed_in? && current_user.avatar.attached?
+  end
+
 end

@@ -2,6 +2,13 @@ p style="color: green" = notice
 
 == render @task
 
+- if @task.files.attached?
+  table
+    - @task.files.each_with_index do |file, i|
+      tr
+        td = i + 1
+        td = link_to file.blob.filename, rails_blob_path(file, only_path: true)
+
 div
   => link_to "Edit this task", edit_task_path(@task)
   '|

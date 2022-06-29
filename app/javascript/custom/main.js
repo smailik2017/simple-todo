@@ -1,7 +1,7 @@
 
-window.onload = function() {
-  document.body.insertAdjacentHTML('afterbegin', '<h1>Hello, world!</h1>')
-};
+// window.onload = function() {
+//   document.body.insertAdjacentHTML('afterbegin', '<h1>Hello, world!</h1>')
+// };
 
 window.addEventListener("load", () => {
   const destroy_links = document.querySelectorAll("a.destroy[data-remote]");

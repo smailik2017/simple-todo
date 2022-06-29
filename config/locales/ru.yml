@@ -58,6 +58,7 @@
           password_confirmation: Подтверждение
           email: Email
           name: Имя пользователя
+          avatar: Аватарка пользователя
   table:
     th: 
       Name: Редактировать

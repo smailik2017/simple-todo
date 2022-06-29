@@ -1,7 +1,7 @@
 tr[id="task_#{task.id}"] 
   td = task.id 
   td = task.user.name
-  td = task.name
+  td = link_to task.name, task_path(task)
   td = task.description
   td = task.deadline
   td = task.state.name 

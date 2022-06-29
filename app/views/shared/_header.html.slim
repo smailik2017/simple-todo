@@ -1,15 +1,24 @@
-header 
-  ul 
-    - if user_signed_in?
-      li 
-        span = t('label.hello') + " #{current_user.name}" 
-      li 
-        = link_to t('label.log_out'), destroy_user_session_path, method: :delete
-    - else 
-      li 
-        = link_to t('label.log_in'), new_user_session_path 
-      li 
-        = link_to t('label.registration'), new_user_registration_path        
+header.row 
+  .col-1 
+    .text-center 
+      - if current_user_avatar?
+        = image_tag current_user.avatar.variant(resize_to_limit: [50, 50], grayscale: 'Rec709Luma'), class: :rounded
+      - else 
+        i.fa.fa-user style='font-size:50px'
+  
+  .col-11
+    ul 
+      - if user_signed_in?
+        li 
+          span = t('label.hello') + " #{current_user.name}" 
+          span = link_to(t('label.edit'), edit_user_registration_path)
+        li 
+          = link_to t('label.log_out'), destroy_user_session_path, method: :delete
+      - else 
+        li 
+          = link_to t('label.log_in'), new_user_session_path 
+        li 
+          = link_to t('label.registration'), new_user_registration_path        
 div
   = button_to language_link_name, toggle_path
 p

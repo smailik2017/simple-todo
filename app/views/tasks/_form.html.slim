@@ -20,6 +20,10 @@
     = f.label :state_id, class: 'form-label'
     = f.select :state_id, options_for_select(State.all.collect { |s| [s.name, s.id]}.insert(0, ""), @task.state_id)
 
+  .field 
+    = f.label :files, class: 'form-label'
+    = f.file_field :files, multiple: true, class: 'form-control'
+
   .actions 
     = f.submit :send, class: 'btn btn-secondary'
 

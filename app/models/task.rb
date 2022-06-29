@@ -35,6 +35,8 @@ class Task < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :commentators, through: :comments, source: :user
 
+  has_many_attached :files, strict_loading: true
+
   validates :name, presence: true
   validates :name, length: { maximium: 16, minimum: 3 }
   validates :name, uniqueness: true

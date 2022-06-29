@@ -88,4 +88,8 @@ Rails.application.configure do # rubocop:disable Metrics/BlockLength
   #   user_name: 'maks.v.fedorovskiy@yandex.ru',
   #   password: 'der parol'
   # }
+
+  # Storage
+  config.active_storage.service = :local
+
 end

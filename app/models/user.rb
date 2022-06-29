@@ -69,6 +69,8 @@ class User < ApplicationRecord
             source: :commentable,
             source_type: :User
 
+  has_one_attached  :avatar
+
   validates :name, presence: true
   validates :name, length: { maximium: 16, minimum: 2 }
   validates :name, uniqueness: true

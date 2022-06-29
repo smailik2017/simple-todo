@@ -71,11 +71,11 @@ class TasksController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_task
-    @task = policy_scope(Task).find(params[:id])
+    @task = policy_scope(Task.with_attached_files).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.require(:task).permit(:name, :description, :deadline, :state_id, :user_id)
+    params.require(:task).permit(:name, :description, :deadline, :state_id, :user_id, files: [])
   end
 end

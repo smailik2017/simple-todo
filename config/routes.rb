@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post 'toggle', to: 'locales#toggle'
 
   namespace :admin do
+    resources :abouts, only: [:edit, :index, :show, :update]
     resources :users do
       member do
         post :toggle, action: :toggle
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
   get 'help', to: 'help#index', as: 'help_index'
   get 'about', to: 'about#index', as: 'about_index'
   get 'stats', to: 'stats#index', as: 'stats_index'
+
 
   root 'tasks#index'
 end

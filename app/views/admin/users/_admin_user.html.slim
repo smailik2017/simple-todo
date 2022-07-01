@@ -1,4 +1,9 @@
 tr[id="admin_user_#{admin_user.id}" style="background-color:#{cycle('#ddd', '#fff')}"]
+  - if admin_user.avatar.attached?
+    td = image_tag admin_user.avatar.variant(resize_to_limit: [50, 50])
+  - else 
+    td
+      span.fa.fa-user.fa-4x
   td = admin_user.name
   td = admin_user.email
   td = admin_user.role.name

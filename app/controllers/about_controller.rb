@@ -11,7 +11,7 @@ class AboutController < ApplicationController
     # I18n.locale = session.fetch(:locale, I18n.default_locale).to_sym
     # I18n.locale = I18n.available_locales.include?(locale) ? locale : I18n.default_locale
 
-    @content = YAML.load_file('config/description.yml')['about']
+    @about_page = About.first
   end
 
   private

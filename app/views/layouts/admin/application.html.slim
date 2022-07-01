@@ -9,6 +9,12 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   body
-    .container 
+    .container  
+      .row 
+        =render 'shared/header'
+      .row 
+        =render 'shared/admin_menu'
+      .row 
+        hr
       .row 
         = yield

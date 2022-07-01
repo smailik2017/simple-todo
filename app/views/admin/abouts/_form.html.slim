@@ -1,0 +1,19 @@
+= form_for [:admin, @admin_about] do |form|
+  - if @admin_about.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@admin_about.errors.count, "error")} prohibited this admin_about from being saved:"
+      ul
+        - @admin_about.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = form.label :page, class: 'form-label'
+    = form.text_area :page, class: 'form-control'
+
+  .field 
+    = form.label :map_location, class: 'form_label'
+    = form.file_field :map_location, class: 'form-control'
+
+  .actions 
+    = form.submit :send, class: 'btn btn-secondary'
+

@@ -1,14 +1,19 @@
 .info-page-header
   h1= t :about
-.info-page-content
-    = t :current_date 
-    =< l Date.current, format: :database
-    br
-    = session[:about_counter]
-    =< t('activerecord.models.visit', count: session[:about_counter])
-    br
-    = User.count 
-    =< t('activerecord.models.user', count: User.count) 
+.row
+  = @about_page.page
+.row
+  .info_page_content
+    = image_tag @about_page.map_location.variant(resize_to_limit: [200, 200])
+.row
+  = t :current_date 
+  =< l Date.current, format: :database
+.row
+  = session[:about_counter]
+  =< t('activerecord.models.visit', count: session[:about_counter])
+.row
+  = User.count 
+  =< t('activerecord.models.user', count: User.count) 
 hr
 => link_to t(:main_page), root_path 
 =< button_to language_link_name, toggle_path

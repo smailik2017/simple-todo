@@ -85,3 +85,4 @@ User.create!  name: 'Администратор',
               password: user_pass,
               role: admin_role,
               active: true
+# 

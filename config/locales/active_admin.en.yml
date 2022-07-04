@@ -1,0 +1,14 @@
+en:
+  active_admin:
+    view: Details
+    edit: Edit
+    resources:
+      user:
+        new_model: New user
+        edit_model: Edit user
+        delete_user: Delete user
+      task:
+        new_model: New task
+        edit_model: Edit task
+        delete_user: Delete task
+    

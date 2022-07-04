@@ -21,6 +21,8 @@
     index:  Список
     new:  Создание
     edit: Редактирование
+    edit_about_page: Редактирование страницы "О нас"
+    admin: Панель администрирования
   activerecord:
     errors:
       messages:

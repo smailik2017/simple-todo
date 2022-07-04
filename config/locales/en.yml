@@ -52,6 +52,8 @@ en:
     index:  List
     new:  New
     edit: Edit
+    edit_about_page: Edit page "About"
+    admin:  Admin panel
   about: About
   current_date: Current date
   visits: Visits

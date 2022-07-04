@@ -3,24 +3,30 @@
 require 'resque/server'
 
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
+  # devise_for :users, ActiveAdmin::Devise.config
+  devise_for :users
+
+  # devise_for :admin_users, ActiveAdmin::Devise.config
+  # devise_for :admin_users, ActiveAdmin::Devise.config
   mount RootApi => '/'
   mount Resque::Server.new, at: '/resque'
 
   post 'toggle', to: 'locales#toggle'
 
-  namespace :admin do
-    resources :abouts, only: [:edit, :index, :show, :update]
-    resources :users do
-      member do
-        post :toggle, action: :toggle
-      end
-    end
-    root 'users#index'
-  end
+  # namespace :admin do
+  #   resources :abouts, only: [:edit, :index, :show, :update]
+  #   resources :users do
+  #     member do
+  #       post :toggle, action: :toggle
+  #     end
+  #   end
+  #   root 'users#index'
+  # end
 
-  devise_for :users do
-    get '/users/sign_out' => 'devise/sessions#destroy'
-  end
+  # devise_for :users do
+  #   get '/users/sign_out' => 'devise/sessions#destroy'
+  # end
 
   resources :users, only: %i[index edit update]
   resources :tasks do

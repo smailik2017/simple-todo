@@ -23,6 +23,12 @@
     edit: Редактирование
     edit_about_page: Редактирование страницы "О нас"
     admin: Панель администрирования
+    id: Номер
+    user: Пользователь
+    description: Описание
+    deadline: Срок выполнения
+    state: Статус
+    files: Файлы
   activerecord:
     errors:
       messages:

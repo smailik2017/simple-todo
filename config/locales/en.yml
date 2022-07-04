@@ -54,6 +54,12 @@ en:
     edit: Edit
     edit_about_page: Edit page "About"
     admin:  Admin panel
+    id: ID
+    user: User
+    description: Description
+    deadline: DeadLine
+    state: State
+    files: Files
   about: About
   current_date: Current date
   visits: Visits

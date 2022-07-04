@@ -11,4 +11,12 @@ en:
         new_model: New task
         edit_model: Edit task
         delete_user: Delete task
+      role:
+        new_model: New role
+        edit_model: Edit role
+        delete_user: Delete role
+      item:
+        new_model: New item
+        edit_model: Edit item
+        delete_user: Delete item
     

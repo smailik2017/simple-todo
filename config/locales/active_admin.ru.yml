@@ -11,3 +11,11 @@ ru:
         new_model: Создать задачу
         edit_model: Редактировать задачу
         delete_model: Удалить задачу
+      role:
+        new_model: Создать роль
+        edit_model: Редактировать роль
+        delete_model: Удалить роль
+      item:
+        new_model: Создать подпункт
+        edit_model: Редактировать подпункт
+        delete_model: Удалить подпункт

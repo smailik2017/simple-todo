@@ -35,4 +35,12 @@ ActiveAdmin.register User do
       f.action :submit, label: 'Отправить', as: :button
     end
   end
+
+  csv do
+    column :id
+    column :name
+    column('Электронная почта', &:email)
+    column('Роль') { |user| user.role.code }
+  end
+
 end

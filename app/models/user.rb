@@ -58,6 +58,8 @@ class User < ApplicationRecord
   belongs_to :role, counter_cache: true
 
   has_many :tasks, dependent: :destroy
+  has_many :items, through: :tasks
+  
   has_many :comments, dependent: :destroy
 
   has_many :commented_tasks,

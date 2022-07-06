@@ -1,5 +1,5 @@
 ActiveAdmin.register Role do
-  menu priority: 3, label: 'Роли'
+  menu priority: 3, label: proc { I18n.t('active_admin.roles') }
 
   show title: proc { |role| role.name.truncate(50) } do
     attributes_table do
@@ -12,11 +12,11 @@ ActiveAdmin.register Role do
       row :created_at
     end
 
-    panel 'Пользователи' do
+    panel I18n.t('active_admin.users') do
       scope = resource.users.order(created_at: :desc)
       table_for scope do
-        column 'ID', :id
-        column 'Имя', :name
+        column :id
+        column :name
       end
     end
   end

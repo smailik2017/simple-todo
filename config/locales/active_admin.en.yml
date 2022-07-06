@@ -19,4 +19,24 @@ en:
         new_model: New item
         edit_model: Edit item
         delete_user: Delete item
-    
+    import_export_users: Import/Export Users
+    users: Users
+    tasks: Tasks
+    roles: Roles
+    items: Items
+    report: Report
+    button:
+      download: Download
+      upload: Upload
+    notice:
+      users_updated_succsessfuly: Users succsessfully updated
+    import: Import
+    export: Export
+    test_excel: Test Excel
+    statistics: Statistics
+    report_settings: Report Settings
+    from: From
+    to: To
+    test_data: Test Data
+
+

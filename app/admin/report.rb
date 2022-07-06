@@ -1,6 +1,7 @@
-ActiveAdmin.register_page 'Отчет' do
+ActiveAdmin.register_page 'report' do
+  menu priority: 7, label: proc { I18n.t('active_admin.report') }
   action_item :export_users do
-    link_to 'Статистика', admin_otchet_report_path, method: :post
+    link_to I18n.t('active_admin.statistics'), admin_report_path, method: :post
   end
 
   controller do
@@ -34,7 +35,7 @@ ActiveAdmin.register_page 'Отчет' do
               filename: 'user.xlsx'
   end
 
-  content title: 'Пользователи' do
+  content title: proc { I18n.t('active_admin.users') } do
     render partial: 'form'
   end
 

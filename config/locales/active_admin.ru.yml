@@ -19,3 +19,22 @@ ru:
         new_model: Создать подпункт
         edit_model: Редактировать подпункт
         delete_model: Удалить подпункт
+    import_export_users: Импорт/Экспорт Пользователей
+    users: Пользователи
+    tasks: Задачи
+    roles: Роли
+    items: Подпункты
+    report: Отчет
+    button:
+      download: Скачать
+      upload: Загрузить
+    notice:
+      users_updated_succsessfuly: Пользователи были успешно обновлены
+    import: Импорт
+    export: Экспорт
+    test_excel: Тест Эксель
+    statistics: Статистика
+    report_settings: Параметры отчета
+    from: От
+    to: До
+    test_data: Тестовые данные

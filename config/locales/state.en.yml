@@ -1,0 +1,5 @@
+en:
+  state:
+    red: 'Red'
+    yellow: 'Yellow'
+    green: 'Green'

@@ -2,7 +2,8 @@ ActiveAdmin.register User do
   config.sort_order = 'name'
   actions :all, except: [:update, :destroy]
 
-  menu priority: 1, label: 'Пользователи'
+  menu priority: 5, label: proc { I18n.t('active_admin.users') }
+
   permit_params :email, :name, :active, :role_id, :password, :password_confirmation
 
   index do
@@ -32,14 +33,14 @@ ActiveAdmin.register User do
       end
     end
     f.actions do
-      f.action :submit, label: 'Отправить', as: :button
+      f.action :submit, as: :button
     end
   end
 
   csv do
     column :id
     column :name
-    column('Электронная почта', &:email)
+    column :email
     column('Роль') { |user| user.role.code }
   end
 

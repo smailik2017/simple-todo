@@ -44,6 +44,10 @@ module ActiveAdmin
       user.admin?
     end
 
+    def download_test?
+      user.admin?
+    end
+
     class Scope
       def initialize(user, scope)
         @user = user

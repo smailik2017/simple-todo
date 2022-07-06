@@ -1,5 +1,5 @@
 ActiveAdmin.register Item do
-  menu priority: 4, label: 'Подпункты'
+  menu priority: 2, label: proc { I18n.t('active_admin.items') }
 
   show title: proc { |item| item.name.truncate(50) } do
     attributes_table do

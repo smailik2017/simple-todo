@@ -1,13 +1,13 @@
 = semantic_form_for 'report_form', url: { action: :report } do |f|
-  = f.inputs name: 'Параметры отчета' do 
+  = f.inputs name: I18n.t('active_admin.report_settings') do 
     ol 
       li 
-        = f.label 'От:'
+        = f.label I18n.t('active_admin.from')
         = f.datetime_select :from, include_blank: false, selected: 1.month.ago.beginning_of_month
 
       li 
-        = f.label 'До:'
+        = f.label I18n.t('active_admin.to')
         = f.datetime_select :to, include_blank: false, selected: Time.now.beginning_of_month
 
   = f.actions do 
-    = f.button 'Скачать'
+    = f.button I18n.t('active_admin.button.download')

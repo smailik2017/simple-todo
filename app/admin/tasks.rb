@@ -1,5 +1,5 @@
 ActiveAdmin.register Task do
-  menu priority: 2, label: 'Задачи'
+  menu priority: 4, label: proc { I18n.t('active_admin.tasks') }
 
   show title: proc { |task| task.name.truncate(50) } do
     attributes_table do

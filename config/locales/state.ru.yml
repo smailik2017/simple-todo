@@ -3,3 +3,17 @@ ru:
     red: 'Красный цвет'
     yellow: 'Желтый цвет'
     green: 'Зеленый цвет'
+  task:
+    state_flag:
+      novel: 'Новая'
+      at_work: 'В работе'
+      postponed: 'Отложена'
+      complete: 'Выполнена'
+      not_complete: 'Не выполнена'
+  user:
+    state_flag:
+      novel: 'Новый'
+      active: 'Активный'
+      archived: 'Архивный'
+      blocked: 'Заблокирован'
+      

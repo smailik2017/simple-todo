@@ -20,6 +20,7 @@
 #  settings               :jsonb
 #  sign_in_count          :integer          default(0), not null
 #  state                  :integer
+#  state_flag             :integer
 #  tasks_count            :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -37,6 +38,42 @@
 #  fk_rails_...  (role_id => roles.id)
 #
 class User < ApplicationRecord
+  include AASM
+
+  enum state_flag: {
+    novel: 10,
+    active: 20,
+    archived: 30,
+    blocked: 40
+  }
+
+  aasm :column => 'state_flag', whiny_transitions: false do
+    state :novel, initial: true, display: I18n.t('user.state_flag.novel')
+    state :active, display: I18n.t('user.state_flag.active')
+    state :archived, display: I18n.t('user.state_flag.archived')
+    state :blocked, display: I18n.t('user.state_flag.blocked')
+
+    # Пользователь активирован
+    event :activate do
+      transitions from: :novel, to: :active
+    end
+    # Пользователь заблокирован
+    event :block do
+      transitions from: :active, to: :blocked
+    end
+    # Пользователь разблокирован
+    event :unblock do
+      transitions from: :blocked, to: :active
+    end
+    # Пользователь заархивирован
+    event :archive do
+      transitions from: :blocked, to: :archived
+    end
+
+
+
+  end
+
   self.per_page = 3
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -83,13 +120,13 @@ class User < ApplicationRecord
   store :settings, coder: JSON
   store_accessor :settings, :per_page, :time_zone, :show_help
 
-  enum state: {
-    created: 1,
-    email_verified: 2,
-    studied: 3,
-    actived: 4,
-    disabled: 5
-  }
+  # enum state: {
+  #   created: 1,
+  #   email_verified: 2,
+  #   studied: 3,
+  #   actived: 4,
+  #   disabled: 5
+  # }
 
   Role.find_each do |role|
     define_method "#{role.code}?" do

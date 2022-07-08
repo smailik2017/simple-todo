@@ -3,3 +3,16 @@ en:
     red: 'Red'
     yellow: 'Yellow'
     green: 'Green'
+  task:
+    state_flag:
+      novel: 'Novel'
+      at_work: 'At work'
+      postponed: 'Postponed'
+      complete: 'Complete'
+      not_complete: 'Not complete'
+  user:
+    state_flag:
+      novel: 'Novel'
+      active: 'Active'
+      archived: 'Archived'
+      blocked: 'Blocked'

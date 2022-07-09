@@ -120,13 +120,13 @@ class User < ApplicationRecord
   store :settings, coder: JSON
   store_accessor :settings, :per_page, :time_zone, :show_help
 
-  # enum state: {
-  #   created: 1,
-  #   email_verified: 2,
-  #   studied: 3,
-  #   actived: 4,
-  #   disabled: 5
-  # }
+  enum state: {
+    created: 1,
+    email_verified: 2,
+    studied: 3,
+    actived: 4,
+    disabled: 5
+  }
 
   Role.find_each do |role|
     define_method "#{role.code}?" do

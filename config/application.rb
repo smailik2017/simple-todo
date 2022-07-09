@@ -53,5 +53,18 @@ module SimpleTasks
 
     # config.active_storage.variant_processor = :vips
     config.active_storage.variant_processor = :mini_magick
+
+    config.active_record.cache_versioning = false
+    if Rails.env.production? || ENV['CACHE_TURN_ON']
+      config.action_controller.perform_caching = true
+      config.action_controller.enable_fragment_cache_logging = true
+      # config.active_record.cache_versioning = false
+
+      config.cache_store = :redis_store, Rails.application.config_for(:redis).deep_symbolize_keys
+    else
+      config.action_controller.perform_caching = false
+      config.cache_store = :null_store
+    end
+
   end
 end

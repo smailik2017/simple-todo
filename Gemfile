@@ -106,6 +106,7 @@ gem 'rack-mini-profiler'
 gem 'whenever', require: false
 
 gem 'redis', '~> 3.0.4'
+gem 'redis-rails'
 
 gem 'resque', '~> 1.25.1'
 gem 'resque-scheduler', '~> 2.5.5'
@@ -121,3 +122,11 @@ gem 'caxlsx'
 gem 'roo'
 
 gem 'aasm'
+
+gem 'memory_profiler'
+
+gem 'newrelic_rpm'
+
+gem 'actionpack-action_caching'
+
+gem 'actionpack-page_caching'

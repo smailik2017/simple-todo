@@ -23,7 +23,7 @@
 #  fk_rails_...  (task_id => tasks.id)
 #
 class Item < ApplicationRecord
-  belongs_to :task, counter_cache: true
+  belongs_to :task, counter_cache: true, touch: true
   belongs_to :state, counter_cache: true
 
   validates :name, presence: true

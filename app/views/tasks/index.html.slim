@@ -12,7 +12,8 @@ table.table
     th 
 
   tbody 
-    = render partial: 'task', collection: @tasks
+    - cache_unless current_user.admin?, [current_user, :tasks_list, params[:page]] do
+      = render partial: 'task', collection: @tasks, cached: true
 br
 
 p 

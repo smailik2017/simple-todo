@@ -15,6 +15,10 @@ class TasksController < ApplicationController
     page = total_pages if page.to_i > total_pages
 
     @tasks = scope.paginate(page: page, per_page: per_page)
+
+    Rack::MiniProfiler.step('Загрузка всех событий') do
+      @all = Task.all
+    end
   end
 
   # GET /tasks/1 or /tasks/1.json

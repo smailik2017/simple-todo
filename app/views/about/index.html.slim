@@ -1,7 +1,7 @@
 .info-page-header
   h1= t :about
 .row
-  = @about_page.page
+    = render partial: 'about_text'
 .row
   .info_page_content
     = image_tag @about_page.map_location.variant(resize_to_limit: [200, 200])

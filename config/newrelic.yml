@@ -7,3 +7,8 @@ production:
   license_key: 'NRAK-XYTK408DXTZIENSM3739UHEY657'
   app_name: todo
   agent_enabled: true
+
+test:
+  license_key: 'NRAK-XYTK408DXTZIENSM3739UHEY657'
+  app_name: todo
+  agent_enabled: false

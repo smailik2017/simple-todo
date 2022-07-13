@@ -17,9 +17,15 @@ table.table
 
 - if @comments
   Strong Comments:
-  - Comment.all.each_with_level(@comments) do |comment, level|
-    p(style="padding-left:#{level * 20}px")
-      = comment.content
+  / = @comments
+  - @comments.each do |comment|
+    p(style="padding-left:#{comment[:level] * 20}px")
+      = "#{comment[:comment].content} - created_at: #{comment[:comment].created_at} - ID: #{comment[:comment].id}"  
+  
+ 
+  / - Comment.all.each_with_level(@comments) do |comment, level|
+  /   p(style="padding-left:#{level * 20}px")
+  /     = comment.content
 
 - unless @task.items_count.nil?
   Strong Items: 

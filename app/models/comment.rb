@@ -37,11 +37,11 @@ class Comment < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :commentable, polymorphic: true
 
-  acts_as_nested_set
-  # belongs_to :parent, class_name: 'Comment'
-  # has_many  :children,
-  #           class_name: 'Comment',
-  #           foreign_key: :parent_id,
-  #           dependent: :destroy
+  # acts_as_nested_set
+  belongs_to :parent, class_name: 'Comment'
+  has_many  :children,
+            class_name: 'Comment',
+            foreign_key: :parent_id,
+            dependent: :destroy
   
 end

@@ -49,6 +49,9 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'ffaker'
   gem 'letter_opener'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -132,3 +135,5 @@ gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'
 
 gem 'awesome_nested_set'
+
+gem 'rspec'

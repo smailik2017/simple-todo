@@ -26,7 +26,8 @@ class TasksController < ApplicationController
   # GET /tasks/1 or /tasks/1.json
   def show 
     authorize @task
-    @comments = @task.comments.root.self_and_descendants.order(:lft)
+    @comments = sort_comments(@task.comments.order(:created_at))
+    # @comments = @task.comments.root.self_and_descendants.order(:lft)
   end
 
   # GET /tasks/new
@@ -86,6 +87,18 @@ class TasksController < ApplicationController
   # Only allow a list of trusted parameters through.
   def task_params
     params.require(:task).permit(:name, :description, :deadline, :state_id, :user_id, files: [])
+  end
+
+  def sort_comments(comments, id = nil, level = 0, result = [])
+    comment = comments.find { |c| id ? c.id == id : c.parent_id == nil }
+    return unless comment
+    result << {
+                comment: comment,
+                level: level
+              }
+    comments.select { |c| c.parent_id == comment.id }
+            .each { |c| sort_comments(comments, c.id, level + 1, result) }
+    result
   end
 
 end

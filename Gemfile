@@ -130,3 +130,5 @@ gem 'newrelic_rpm'
 gem 'actionpack-action_caching'
 
 gem 'actionpack-page_caching'
+
+gem 'awesome_nested_set'

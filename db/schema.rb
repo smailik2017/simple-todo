@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_08_070812) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_12_125404) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,7 +81,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_08_070812) do
     t.datetime "updated_at", null: false
     t.string "commentable_type"
     t.bigint "commentable_id"
+    t.integer "parent_id", comment: "Ссылка на родительский комментарий"
+    t.integer "lft", null: false, comment: "Левая граница множества в рамках гема awesome_nested_set"
+    t.integer "rgt", null: false, comment: "Правая граница множества в рамках гема awesome_nested_set"
+    t.integer "depth", default: 0, null: false, comment: "Глубина вложения узла в рамках гема awesome_nested_set"
+    t.integer "children_count", default: 0, null: false, comment: "Колличество потомков в рамках гема awesome_nested_set"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+    t.index ["parent_id"], name: "index_comments_on_parent_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -138,6 +144,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_08_070812) do
     t.datetime "updated_at", null: false
     t.integer "state", comment: "Состояние AASM: красный, желтый, зеленый"
     t.boolean "active", default: true, comment: "true - включен, false - выключен"
+  end
+
+  create_table "tree_comments", comment: "Таблица замыканий для комментариев", force: :cascade do |t|
+    t.integer "parent_id", comment: "Внешний ключ для родительского комментария"
+    t.integer "child_id", comment: "Внешний ключ для ответа"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id", "child_id"], name: "index_tree_comments_on_parent_id_and_child_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

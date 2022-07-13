@@ -15,6 +15,12 @@ table.table
     - cache @task do
       == render @task
 
+- if @comments
+  Strong Comments:
+  - Comment.all.each_with_level(@comments) do |comment, level|
+    p(style="padding-left:#{level * 20}px")
+      = comment.content
+
 - unless @task.items_count.nil?
   Strong Items: 
   table 

@@ -68,21 +68,58 @@ end
 Item.create! hash_items
 
 ### Create Comments for Tasks ###
-hash_comments = COMMENTS_COUNT.times.map do
-  commentable = ((rand(2) == 1) ? Task.all : User.all).sample
-  {
-    content: FFaker::HipsterIpsum.paragraphs,
-    user: User.all.sample,
-    commentable_id: commentable.id,
-    commentable_type: commentable.class.to_s
-  }
+# hash_comments = COMMENTS_COUNT.times.map do
+#   commentable = ((rand(2) == 1) ? Task.all : User.all).sample
+#   {
+#     content: FFaker::HipsterIpsum.paragraphs,
+#     user: User.all.sample,
+#     commentable_id: commentable.id,
+#     commentable_type: commentable.class.to_s,
+#   }
+# end
+
+# Comment.create! hash_comments
+
+# def create_tree_comments(comment, parent_id)
+#   tree_comments = [{
+#     parent_id: comment.id,
+#     child_id: comment.id
+#   }]
+#   if parent_id
+#     TreeComment.where(child_id: parent_id).each do |tree|
+#       tree_comments << {
+#         parent_id: tree.parent_id,
+#         child_id: comment.id
+#       }
+#     end
+#   end
+#   TreeComment.create!(tree_comments.uniq)
+# end
+
+def create_task(users, task, parent = nil)
+  comment = parent ? parent.children : Comment
+  comment.create!(
+              user: users.sample,
+              content: FFaker::HipsterIpsum.paragraph,
+              commentable_id: task.id,
+              commentable_type: task.class.to_s
+            )
 end
 
-Comment.create! hash_comments
+Task.all.each do |task|
+  root = create_task(User.all, task)
+    create_task(User.all, task, root)
+    first = create_task(User.all, task, root)
+      create_task(User.all, task, first)
+    create_task(User.all, task, root)
+end
 
 User.create!  name: 'Администратор', 
               email:  admin_email,
               password: user_pass,
               role: admin_role,
               active: true
-# 
+ 
+User.all.each do |user|
+  user.activate!
+end

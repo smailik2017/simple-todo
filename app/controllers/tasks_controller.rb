@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
+  include Commentable
+  
   before_action :authenticate_user!
   before_action :set_task, only: %i[show edit update destroy]
 
@@ -22,7 +24,10 @@ class TasksController < ApplicationController
   end
 
   # GET /tasks/1 or /tasks/1.json
-  def show; end
+  def show 
+    authorize @task
+    @comments = @task.comments.root.self_and_descendants.order(:lft)
+  end
 
   # GET /tasks/new
   def new
@@ -82,4 +87,5 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:name, :description, :deadline, :state_id, :user_id, files: [])
   end
+
 end

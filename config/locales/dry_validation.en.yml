@@ -1,0 +1,6 @@
+en:
+  dry_validation:
+    errors:
+      gt?:
+        value:
+          price: 'Price must be greater than zerro'

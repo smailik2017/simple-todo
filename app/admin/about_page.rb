@@ -16,7 +16,7 @@ ActiveAdmin.register About do
   form do |f|
     f.inputs do
       f.input :page
-      f.input :map_location
+      f.file_field :map_location
     end
     f.actions do
       f.action :submit, as: :button

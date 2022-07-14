@@ -137,3 +137,11 @@ gem 'actionpack-page_caching'
 gem 'awesome_nested_set'
 
 gem 'rspec'
+
+gem 'dry-initializer'
+
+gem 'dry-struct'
+
+gem 'dry-validation'
+
+gem 'dry-schema'

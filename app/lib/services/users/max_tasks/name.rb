@@ -1,3 +1,4 @@
+# Name #
 class Services::Users::MaxTasks::Name
   include Callable
   extend Dry::Initializer

@@ -19,15 +19,21 @@ module Contracts
       key.failure('Длина названия превышает 80 символов') if value.size > 80
     end
 
+# rule for Description #
     rule(:description) do
       unless value.nil?
         key.failure('Длина Описания должна быть не менее 100 символов') if value.size < 100
       end
     end
 
+# rule for Attachments #
     rule(:attachments) do
       key.failure('Колличество вложение должно быть больше одного и не более 10') unless (2..10).include?(value.size)
     end
 
+# rule for Curency #
+    rule(:currency) do
+      key.failure('Валюта должна быть RUB, EUR or USD') unless Types::Currency.values.include?(value) 
+    end
   end
 end

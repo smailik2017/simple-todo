@@ -145,3 +145,5 @@ gem 'dry-struct'
 gem 'dry-validation'
 
 gem 'dry-schema'
+
+gem 'httparty'

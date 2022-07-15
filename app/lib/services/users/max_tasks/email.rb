@@ -1,3 +1,4 @@
+# eMail #
 class Services::Users::MaxTasks::Email
   include Callable
   extend Dry::Initializer

@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+# ruby '3.0.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.2', '>= 7.0.2.3'
@@ -89,7 +89,11 @@ gem 'rails-ujs'
 
 gem 'font-awesome-rails'
 
+gem "will_paginate", ">=3.0.pre2"
+
 gem 'will_paginate-bootstrap'
+
+
 
 gem 'grape'
 
@@ -106,3 +110,5 @@ gem 'whenever', require: false
 gem 'redis'
 
 gem 'resque'
+
+gem 'activeadmin'

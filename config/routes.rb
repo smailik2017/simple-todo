@@ -1,18 +1,20 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   mount RootApi => '/'
 
   post 'toggle', to: 'locales#toggle'
 
-  namespace :admin do
-    resources :users do
-      member do
-        post :toggle, action: :toggle
-      end
-    end
-    root 'users#index'
-  end
+  # namespace :admin do
+  #   resources :users do
+  #     member do
+  #       post :toggle, action: :toggle
+  #     end
+  #   end
+  #   root 'users#index'
+  # end
 
   devise_for :users do
     get '/users/sign_out' => 'devise/sessions#destroy'

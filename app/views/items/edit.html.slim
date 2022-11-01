@@ -1,0 +1,8 @@
+h1 Editing item
+
+== render "form", item: @item
+
+br
+
+div
+  => link_to "Back", edit_task_path(@item.task)

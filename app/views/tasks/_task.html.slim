@@ -5,5 +5,12 @@ tr[id="task_#{task.id}"]
   td = task.description
   td = task.deadline
   td = task.state.name 
+  td 
+    table
+      - task.items.each do |ii|
+        tr 
+          td = ii.name
+          td = ii.state.name
+
   td = link_to edit_task_path(task), class: 'btn btn-secondary' do 
     span.fa.fa-pencil 

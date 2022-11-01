@@ -20,6 +20,15 @@
     = f.label :state_id, class: 'form-label'
     = f.select :state_id, options_for_select(State.all.collect { |s| [s.name, s.id]}.insert(0, ""), @task.state_id)
 
+  .fiels
+    = f.label :item, class: 'form-label'
+    table 
+      - task.items.each do |i|
+        tr 
+          td = i.name
+          td = i.state.name
+          td = link_to 'item', edit_task_item_path(task, i)
+
   .actions 
     = f.submit :send, class: 'btn btn-secondary'
 

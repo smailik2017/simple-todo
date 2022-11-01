@@ -21,9 +21,12 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: %i[index edit update]
+  # resources :tasks
   resources :tasks do
     resources :items
   end
+  resources :items
+
 
   get 'users', to: 'users#index', as: 'users_index'
   get 'settings', to: 'settings#index', as: 'settings_index'

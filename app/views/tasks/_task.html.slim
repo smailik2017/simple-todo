@@ -7,7 +7,7 @@ tr[id="task_#{task.id}"]
   td = task.state.name 
   td 
     table
-      - task.items.each do |ii|
+      - task.items.order(:state_id).each do |ii|
         tr 
           td = ii.name
           td = ii.state.name

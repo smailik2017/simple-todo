@@ -12,7 +12,10 @@
 
   .field 
     = form.label :state_id, class: 'form-label'
-    = form.select :state_id, options_for_select(State.all.collect { |s| [s.name, s.id]}.insert(0, ""), @item.state_id)
+    = form.select :state_id, options_for_select(State.all.collect { |s| [s.name, s.id]}.insert(0, ""), @item.state_id ||= State.where(name: 'in progress').pluck(:id))
+
+  .field 
+    = form.text_field :task_id, type: 'hidden'
 
   div
     = form.submit

@@ -7,15 +7,6 @@ Rails.application.routes.draw do
 
   post 'toggle', to: 'locales#toggle'
 
-  # namespace :admin do
-  #   resources :users do
-  #     member do
-  #       post :toggle, action: :toggle
-  #     end
-  #   end
-  #   root 'users#index'
-  # end
-
   devise_for :users do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end

@@ -21,22 +21,25 @@
     = f.select :state_id, options_for_select(State.all.collect { |s| [s.name, s.id]}.insert(0, ""), @task.state_id)
 
   .actions 
-    = f.submit :save, class: 'btn btn-secondary'
+    = f.submit 'Save', class: 'btn btn-secondary'
+    = link_to 'Back to Tasks', root_path
 
   hr
   h1 
     |ITEMS
   hr
-  table 
-    - @task.items.order(:state_id).each do |i|
-      tr 
-        td = i.name
-        td = i.state.name
-        td = link_to edit_task_item_path(@task, i), class: 'btn btn-secondary' do 
-          span.fa.fa-pencil
+  - if params[:action] != 'new'
+    table 
+      - @task.items.order(:state_id).each do |i|
+        tr 
+          td = i.name
+          td = i.state.name
+          td = link_to edit_task_item_path(@task, i), class: 'btn btn-secondary' do 
+            span.fa.fa-pencil
 
-  = link_to new_task_item_url(@task) do 
-      span.fa.fa-plus Новый пункт
-
+    = link_to new_task_item_url(@task) do 
+        span.fa.fa-plus Новый пункт
+  - else 
+    |Save Task before Items
   hr
 end 
